@@ -1,17 +1,19 @@
 <?php
 /**
- * Pages Template
+ * Full Content Template
  *
- * @package Responsive
+ * Template Name: Full Width Page (no sidebar)
+ *
+ * @package	Responsive
  */
 
 get_header(); ?>
 
-		<div id="content" class="grid col-620">
+		<div id="content-full" class="grid col-940">
 
 <?php if ( have_posts() ) : ?>
 
-	<?php while (have_posts()) : the_post(); ?>
+	<?php while ( have_posts() ) : the_post(); ?>
 
 		<?php responsive_breadcrumb_lists(); ?>
 
@@ -29,7 +31,7 @@ get_header(); ?>
 
 				<div class="post-entry">
 					<?php the_content( __( 'Read more &#8250;', 'responsive' ) ); ?>
-					<?php wp_link_pages( array( 'before' => '<div class="pagination">' . __( 'Pages:', 'responsive' ), 'after' => '</div>' ) ); ?>
+					<?php wp_link_pages(array( 'before' => '<div class="pagination">' . __( 'Pages:', 'responsive' ), 'after' => '</div>' ) ); ?>
 				</div><!-- end of .post-entry -->
 
 				<div class="post-data">
@@ -53,11 +55,10 @@ get_header(); ?>
 
 <?php else : ?>
 
-		<?php get_template_part( 'no-results', 'single' ); ?>
+		<?php get_template_part( 'no-results', 'page-full-with' ); ?>
 
 <?php endif; ?>
 
-		</div><!-- end of #content -->
+		</div><!-- end of #content-full -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
