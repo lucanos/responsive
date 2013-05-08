@@ -99,18 +99,19 @@ if (!function_exists('responsive_setup')):
         if (!isset($content_width))
             $content_width = 550;
 
-        /**
-         * Responsive is now available for translations.
-         * Add your files into /languages/ directory.
+		/**
+		 * Responsive is now available for translations.
+		 * Add your files into /languages/ directory.
 		 * @see http://codex.wordpress.org/Function_Reference/load_theme_textdomain
-         */
-	    load_theme_textdomain('responsive', get_template_directory().'/languages');
+		 */
 
-            $locale = get_locale();
-            $locale_file = get_template_directory().'/languages/$locale.php';
-            if (is_readable( $locale_file))
-	            require_once( $locale_file);
-						
+			$domain = 'responsive';
+			// The "theme_locale" filter is also used in load_theme_textdomain()
+			$locale = apply_filters('theme_locale', get_locale(), $domain);
+
+			load_textdomain($domain, WP_LANG_DIR.'/responsive/'.$locale.'.mo');
+			load_theme_textdomain($domain, get_template_directory().'/languages/');
+
         /**
          * Add callback for custom TinyMCE editor stylesheets. (editor-style.css)
          * @see http://codex.wordpress.org/Function_Reference/add_editor_style
